@@ -35,11 +35,11 @@ public class DiagramView extends View {
             return true;
 
         Random r = new Random();
-        int radius = (int) (r.nextDouble()*Star.SUN_RADIUS/100);
+        int radius = (int) (r.nextDouble()*Star.SUN_RADIUS);
         int temp = r.nextInt(40000)+2000;
         stars.add(new Star(radius, temp, event.getX(), event.getY()));
         invalidate();
-        Log.d("my", "added star at " + event.getX() + " " + event.getY());
+        Log.d("my", "added star r = "+ radius +" at " + event.getX() + " " + event.getY());
         Log.d("my", "total stars  " +stars.size() );
         return true;
     }

@@ -16,9 +16,11 @@ public class Star {
     }
 
     public static boolean isSorted(ArrayList<Star> stars) {
-        // сравнить попарно объекты и проверить,
-        // что они располагаются в порядке возрастания температуры
-        return false;
+        for (int i = 1; i < stars.size(); i++) {
+            if (stars.get(i-1).temperature > stars.get(i).temperature)
+                return false;
+        }
+        return true;
     }
     static final int SUN_CANVAS_RADIUS = 20;
     static final int SUN_RADIUS = 695508; // km
@@ -42,7 +44,8 @@ public class Star {
 
     public void draw(Canvas c) {
         Paint p = new Paint(); p.setColor(color());
-        c.drawCircle(x,y,radius/SUN_RADIUS * SUN_CANVAS_RADIUS, p);
+        c.drawCircle(x,y, 10, p);
+        //radius/SUN_RADIUS * SUN_CANVAS_RADIUS
     }
 
 
