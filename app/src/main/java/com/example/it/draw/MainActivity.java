@@ -13,8 +13,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        draw = (SpaceSurfaceView) findViewById(R.id.view);
+        setContentView(new DiagramView(this));
+        //draw = (SpaceSurfaceView) findViewById(R.id.view);
 
     }
 

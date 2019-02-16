@@ -11,7 +11,7 @@ public class Bubble {
         distance = 10f + r.nextFloat()*50;
         radius = 1f + r.nextFloat()*10;
 
-        angle = r.nextFloat()*(float) 6.28;
+        angle = r.nextFloat()* 2 * (float)Math.PI;
         velocity = r.nextFloat()/10 + 1;
     }
     void step()

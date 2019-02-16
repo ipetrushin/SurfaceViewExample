@@ -20,7 +20,7 @@ public class SpaceSurfaceView extends SurfaceView implements SurfaceHolder.Callb
     {
         ArrayList<Bubble> bubbles = new ArrayList<>();
         boolean runFlag = true;
-        SurfaceHolder surfaceHolder;
+        final SurfaceHolder surfaceHolder;
 
         public DrawThread(SurfaceHolder surfaceHolder) {
             this.surfaceHolder = surfaceHolder;
@@ -37,7 +37,8 @@ public class SpaceSurfaceView extends SurfaceView implements SurfaceHolder.Callb
                     sleep(2);
                 }
                 catch (InterruptedException e) {}
-                Canvas canvas = surfaceHolder.lockCanvas(null);
+                // Get Canvas
+                Canvas canvas = surfaceHolder.lockCanvas();
                 Paint p = new Paint();
                 Random r = new Random();
                 canvas.drawColor(Color.rgb(0,0,100));
@@ -50,9 +51,8 @@ public class SpaceSurfaceView extends SurfaceView implements SurfaceHolder.Callb
                     b.step();
                     canvas.drawCircle(b.getX()+ center_x, b.getY() + center_y, b.radius, p);
                 }
-                if (canvas != null) {
-                    surfaceHolder.unlockCanvasAndPost(canvas);
-                }
+                // Release Canvas
+                surfaceHolder.unlockCanvasAndPost(canvas);
             }
         }
 
@@ -68,6 +68,9 @@ public class SpaceSurfaceView extends SurfaceView implements SurfaceHolder.Callb
         dt = new DrawThread(holder);
         dt.start();
 
+
+        // Thread - ы полетели!!! И очень много.
+
     }
 
     @Override
@@ -79,9 +82,11 @@ public class SpaceSurfaceView extends SurfaceView implements SurfaceHolder.Callb
     public void surfaceDestroyed(SurfaceHolder holder) {
         if (dt != null) {
             dt.runFlag = false;
-            try {
-                dt.join();
-            } catch (InterruptedException e) { }
+                try {
+                    dt.join();
+                } catch (InterruptedException e) {
+
+                }
         }
 
 
